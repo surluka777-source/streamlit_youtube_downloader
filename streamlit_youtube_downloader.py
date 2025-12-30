@@ -18,7 +18,12 @@ if st.button("영상 준비하기"):
                 'format': 'bestvideo+bestaudio/best',
                 'merge_output_format': 'mp4',
                 'outtmpl': str(save_dir / '%(title)s.%(ext)s'),
-                # 서버(리눅스)에 설치된 ffmpeg를 자동으로 찾으므로 경로 지정 필요 없음
+                # 추가: 유튜브 추출기 인자 설정 (안드로이드 클라이언트 사용)
+                'extractor_args': {
+                    'youtube': {
+                        'player_client': ['android', 'ios'],
+                    }
+                },
                 'quiet': True,
             }
 
@@ -41,4 +46,5 @@ if st.button("영상 준비하기"):
             except Exception as e:
                 st.error(f"오류 발생: {e}")
     else:
+
         st.warning("링크를 입력해주세요.")
